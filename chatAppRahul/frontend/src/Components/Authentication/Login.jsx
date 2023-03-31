@@ -27,6 +27,17 @@ const Login = () => {
     }
     const {data} = await axios.post("/api/user/login", {email, password}, config);
     console.log(data);
+    if (data === 'wrong password'){
+      toast({
+        title : 'wrong password',
+        status : 'error',
+        duration : '3000',
+        isClosable: true
+        });
+        navigate('/');
+        setLoading(false);
+        return;
+    }
       toast({
         title : 'signedUp successfully',
         status : 'success',
