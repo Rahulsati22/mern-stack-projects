@@ -1,0 +1,27 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  background-image: url("https://raw.githubusercontent.com/piyush-eon/mern-chat-app/master/frontend/src/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  scrollbar-width: none; /* Firefox */
+}
+::placeholder{
+  color:black;
+  opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: black;
+}
