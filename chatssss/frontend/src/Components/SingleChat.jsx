@@ -12,9 +12,8 @@ import Lottie from 'react-lottie'
 import './styles.css'
 import { useDispatch, useSelector } from 'react-redux'
 import io from 'socket.io-client'
-import { ChatState } from '../Context/ChatProvider'
 const ENDPOINT = 'http://localhost:8000';
-var socket, selectedChatCompare;
+var socket;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     let defaultOptions = {
@@ -36,7 +35,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const { user } = useSelector((state) => state.userAdmin);
     const dispatch = useDispatch()
     const toast = useToast();
-    const { notification, setNotification } = ChatState();
+     
 
 
     useEffect(() => {
@@ -58,16 +57,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             setMessages(messages);
         }
         console.log(selectedChat);
-        selectedChatCompare = selectedChat
+        
     }, [selectedChat, dispatch])
 
     useEffect(() => {
         socket.on('message received', (newMessageReceived) => {
-            if (!selectedChat || selectedChat._id !== newMessageReceived.chat._id) {
-            } else {
-                setMessages([...messages, newMessageReceived])
-                setFetchAgain(!fetchAgain)
-            }
+                if (selectedChat._id === newMessageReceived.chat._id){
+                setMessages([...messages, newMessageReceived]);
+                setFetchAgain(!fetchAgain);
+                }
         })
     })
 
